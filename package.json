@@ -18,6 +18,7 @@
   "homepage": "https://github.com/NCCUCS-PLSM/simple-blog-mongodb#readme",
   "dependencies": {
     "express": "^4.13.3",
+    "kerberos": "0.0.17",
     "mongodb": "^2.0.52"
   }
 }
