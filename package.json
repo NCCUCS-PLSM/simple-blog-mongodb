@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/NCCUCS-PLSM/simple-blog-mongodb#readme",
   "dependencies": {
-    "body-parser": "^1.14.1",
     "compression": "^1.6.0",
     "express": "^4.13.3",
     "kerberos": "0.0.17",

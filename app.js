@@ -3,48 +3,44 @@ var path = require('path');
 var express = require('express');
 var app = express();
 
+var connectingDB = require(path.resolve(__dirname, './mongodb')).connectingDB;
+var objectId = require(path.resolve(__dirname, './mongodb')).objectId;
+
 var createRouter = require(path.resolve(__dirname, './create'));
 var readRouter = require(path.resolve(__dirname, './read'));
 var updateRouter = require(path.resolve(__dirname, './update'));
 var deleteRouter = require(path.resolve(__dirname, './delete'));
 
-var bodyParser = require('body-parser');
 var compression = require('compression');
 var morgan = require('morgan');
 
-app.use(morgan('short'));
-app.use(compression());
+connectingDB
+	.then(db => {
+		app.use(morgan('short'));
 
-app.post('*', bodyParser.urlencoded({
-	extended: true,
-	limit: '10mb'
-}));
-app.put('*', bodyParser.urlencoded({
-	extended: true,
-	limit: '10mb'
-}));
-app.post('*', bodyParser.json({
-	limit: '10mb'
-}));
-app.put('*', bodyParser.json({
-	limit: '10mb'
-}));
+		app.use('/static', express.static(path.resolve(__dirname, './static')));
+		app.get('/', (req, res) => {
+			res.sendFile(path.resolve(__dirname, './static/blog.html'));
+		});
 
-// Home
-app.get('/', (req, res) => {
-	res.json('hello world');
-});
+		app.use(compression());
+		app.use((req, res, next) => {
+			req.db = db;
+			req.objectId = objectId;
+			next();
+		});
 
-// Create
-app.post('*', createRouter);
+		// Create
+		app.post('/api', createRouter);
 
-// Read
-app.get('*', readRouter);
+		// Read
+		app.get('/api', readRouter);
 
-// Update
-app.put('*', updateRouter);
+		// Update
+		app.put('/api', updateRouter);
 
-// Delete
-app.delete('*', deleteRouter);
+		// Delete
+		app.delete('/api', deleteRouter);
 
-app.listen(1688);
+		app.listen(1688);
+	});
