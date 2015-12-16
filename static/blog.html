@@ -3,14 +3,65 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<title>Simple blog example using MongoDB</title>
+
+	<link rel="stylesheet" type="text/css" href="./static/semantic.min.css">
 </head>
 
-<body>
-	Content of the document......
+<body style="padding-top: 20px">
+	<span style="float:left; margin-left:10px">
+		<button class="ui blue button" onclick="newPost()">New Post</button>
+	</span>
+	<div id="blogposts" class="ui text container">
+		<!-- <div id="" style="margin-bottom: 50px" class="blogpost">
+			<div style="heigth:40px; padding-top:7px; padding-bottom:7px" class="ui blue top attached segment">
+				<h3>This s</h3>
+			</div>
+			<div style="padding-bottom:7px" class="ui bottom attached segment blogpostblock">
+				<div class="blogpostcontent">helloo</div>
+				<div class="actions" style="font-size:small; margin-top:10px">
+					<a style="cursor:pointer; margin-right: 10px" class="edit">Edit</a>
+					<a style="cursor:pointer" class="delete">Delete</a>
+				</div>
+			</div>
+			<div class="ui comments">
+				<div id="bb" class="comment blogpostcomment">
+					<a class="avatar">
+						<img src="./static/avatar.png">
+					</a>
+					<div class="content blogpostcommentcontent">
+						<a class="author">Joe Henderson</a>
+						<div class="text"> ff</div>
+					</div>
+					<div class="actions">
+						<a class="edit">Edit</a>
+						<a class="delete">Delete</a>
+					</div>
+				</div>
+				<div style="margin-top:30px" class="ui pointing below label">
+					Leave a comment
+				</div>
+				<form class="ui reply form">
+					<div class="field">
+						<textarea style="height: 60px" rows="2"></textarea>
+					</div>
+					<div class="ui primary submit labeled icon button">
+						<i class="icon edit"></i> Add Comment
+					</div>
+				</form>
+			</div>
+		</div> -->
+	</div>
 </body>
 
 <script type="text/javascript" src="./static/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="./static/handleAJAX.js"></script>
+<!-- <script type="text/javascript" src="./static/semantic.min.js"></script> -->
+<script type="text/javascript">
+	init();
+</script>
 
 </html>
